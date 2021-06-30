@@ -11,9 +11,6 @@ app.use(express.json());
 
 const PORT = process.env.PORT;
 
-// getting userSchema 
-// const User = require('./model/userSchema');
-
 //linking router files to make routing easy
 app.use(require('./router/auth'))
 
@@ -28,7 +25,7 @@ app.get('/', (req, res) => {
     res.send('hello world')
 })
 
-app.get('/profile', middleware, (req, res) => {
+app.get('/profil', middleware, (req, res) => {
     res.send('hello profile')
 })
 
