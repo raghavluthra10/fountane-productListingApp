@@ -2,6 +2,9 @@ const dotenv = require('dotenv');
 const mongoose = require('mongoose');
 const express = require('express');
 const app = express();
+const cookieParser = require('cookie-parser');
+
+app.use(cookieParser());
 
 // get values from evn files 
 dotenv.config({ path: './config.env' })
@@ -14,33 +17,10 @@ const PORT = process.env.PORT;
 //linking router files to make routing easy
 app.use(require('./router/auth'))
 
-// middleware
-const middleware = (req, res, next) => {
-    console.log('middleware')
-    next()
-}
-
-
-app.get('/', (req, res) => {
-    res.send('hello world')
-})
-
-app.get('/profil', middleware, (req, res) => {
-    res.send('hello profile')
-})
-
-app.get('/login', (req, res) => {
-    res.send('hello login')
-})
 
 app.get('/signup', (req, res) => {
     res.send('hello signup')
 })
-
-app.get('/listing', (req, res) => {
-    res.send('hello listing')
-})
-
 
 
 app.listen(PORT, () => {

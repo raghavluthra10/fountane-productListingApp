@@ -53,6 +53,7 @@ userSchema.methods.generateAuthToken = async function () {
     }
 }
 
+
 const User = mongoose.model('userNames', userSchema)
 
 module.exports = User;

@@ -1,0 +1,10 @@
+.listing{
+    display: flex;
+    padding: 50px 100px;
+    flex-direction: column;
+}
+
+.listing__top {
+    display: flex;
+    justify-content: space-between;
+}

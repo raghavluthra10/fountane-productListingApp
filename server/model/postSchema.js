@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
+const User = require('./userSchema');
 
 const postSchema = new mongoose.Schema({
-    product: {
         title: {
             type: String,
             required: true
@@ -18,9 +18,8 @@ const postSchema = new mongoose.Schema({
             type: Number,
             required: true
         }
-    }
 });
 
-const Post = mongoose.model('userNames', postSchema);
+const Post = mongoose.model('products', postSchema);
 
 module.exports = Post;
