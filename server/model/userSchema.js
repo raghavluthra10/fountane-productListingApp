@@ -27,7 +27,26 @@ const userSchema = new mongoose.Schema({
                 }
             }
         ],
-        products: []
+        products: [
+            {
+                title: {
+                    type: String,
+                    required: true
+                },
+                description: {
+                    type: String,
+                    required: true
+                },
+                quantity: {
+                    type: Number,
+                    required: true
+                },
+                price: {
+                    type: Number,
+                    required: true
+                }
+            }
+        ]
     
 });
 
@@ -50,6 +69,19 @@ userSchema.methods.generateAuthToken = async function () {
         return token;
     } catch (err) {
         console.log(err);
+    }
+}
+
+// add product
+userSchema.methods.addProductToUser = async function ( title, description, quantity, price ) {
+    try {
+        this.products = this.products.concat({ title, description, quantity, price })
+
+        await this.save();
+        return this.products;
+
+    } catch (err) {
+        console.log(err)
     }
 }
 

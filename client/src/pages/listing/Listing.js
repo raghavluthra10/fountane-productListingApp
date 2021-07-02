@@ -23,7 +23,7 @@ const Listing = () => {
             } );
 
             const data = await res.json();
-            setFetchedUserData(data)
+            setFetchedUserData({...fetchedUserData, name: data.name})
 
             if(!res.status === 200) {
                 const error = new Error(res.error);
@@ -41,10 +41,15 @@ const Listing = () => {
         getUserDetails();
     }, []);
 
+    // const addProduct = async (info) => {
+    //     console.log(info)
+    // };
+
     return (
         <div className='listing'>
 
             {showProductModal && <AddProduct 
+            // productToBeAdded={addProduct}
             closeModal={() => setShowProductModal(false)}
             /> }
 

@@ -11,6 +11,7 @@ const Navbar = () => {
         history.push('/login')
     };
 
+  
     return (
         <div className="navbar">
             <div className='navbar__navPages'>
@@ -26,6 +27,10 @@ const Navbar = () => {
             
             <Button className='navbar__login' onClick={authStateChange} >
                 Login
+            </Button>
+
+            <Button className='navbar__login' onClick={() => history.push('/logout')} >
+                Logout
             </Button>
 
         </div>

@@ -82,5 +82,34 @@ router.get('/listing', authenticate, (req, res) => {
     res.send(req.rootUser);
 })
 
+router.post('/addProduct', authenticate  , async (req, res) => {
+    try {
+        const { title, description, quantity, price } = req.body;
+
+        if( !title || !description || !quantity || !price ) {
+            console.log('error in contact form');
+            return res.json({ error: 'Please fill the entire contact form' })
+        }
+
+        const getUserId = await User.findOne({ _id: req.userID })
+
+        if(getUserId) {
+            const userProduct = await getUserId.addProductToUser( title, description, quantity, price )
+            await userProduct.save()
+
+            ress.status(201).json({ message: 'Product added successfully' })
+        }
+
+    } catch (err) {
+        console.log(err)
+    }
+})
+
+
+// logout user
+router.get('/logout', (req, res) => {
+    res.clearCookie('jwtToken', {path: '/'})
+    res.status(200).send('loggout');
+})
 
 module.exports = router;

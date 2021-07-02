@@ -6,6 +6,7 @@ import Listing from './pages/listing/Listing';
 import Login from './pages/login/Login';
 import Signup from './pages/signup/Signup';
 import ErrorPage from './pages/errorPage/ErrorPage';
+import Logout from './components/Logout';
 
 function App() {
   return (
@@ -30,6 +31,11 @@ function App() {
        <Route path='/signup'>
          <Signup />
        </Route>
+
+       <Route path='/logout'>
+         <Logout />
+       </Route>
+
 
        <Route>
          <ErrorPage />
