@@ -12,3 +12,9 @@ nodemon
 ## dependicies added in the front end:
 material-ui (icon and components),
 react router dom
+
+## stack used:
+Mongodb,
+Express js,
+React js,
+Node js
