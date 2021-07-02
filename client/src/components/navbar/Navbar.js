@@ -1,16 +1,14 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import './Navbar.css';
 import Button from '@material-ui/core/Button';
 import { Link, useHistory } from 'react-router-dom';
+import { UserContext } from '../../App';
 
 const Navbar = () => {
 
+    const { state, dispatch } = useContext(UserContext);
+
     const history = useHistory();
-
-    const authStateChange = () => {
-        history.push('/login')
-    };
-
   
     return (
         <div className="navbar">
@@ -24,14 +22,19 @@ const Navbar = () => {
                 </Link>
             </div>
 
+            {state ? (
+                <Button className='navbar__login' onClick={() => history.push('/logout')} >
+                    Logout
+                </Button>
+            ) : (
+                <Button className='navbar__login' onClick={() => history.push('/login')} >
+                    Login
+                </Button>
+            )}
+                
             
-            <Button className='navbar__login' onClick={authStateChange} >
-                Login
-            </Button>
-
-            <Button className='navbar__login' onClick={() => history.push('/logout')} >
-                Logout
-            </Button>
+                
+            
 
         </div>
     )

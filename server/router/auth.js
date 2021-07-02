@@ -112,4 +112,9 @@ router.get('/logout', (req, res) => {
     res.status(200).send('loggout');
 })
 
+router.get('/getProducts', async (req, res) => {
+    const allUsers = await User.find({})
+    res.send(allUsers)
+})
+
 module.exports = router;

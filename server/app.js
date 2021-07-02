@@ -18,11 +18,6 @@ const PORT = process.env.PORT;
 app.use(require('./router/auth'))
 
 
-app.get('/signup', (req, res) => {
-    res.send('hello signup')
-})
-
-
 app.listen(PORT, () => {
     console.log(`server is running at ${PORT}`);
 })

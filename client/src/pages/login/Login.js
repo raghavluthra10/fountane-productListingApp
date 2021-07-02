@@ -1,9 +1,12 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import './Login.css';
 import { Link, useHistory } from 'react-router-dom';
 import { Button } from '@material-ui/core';
+import { UserContext } from '../../App';
 
 const Login = () => {
+
+    const { state, dispatch } = useContext(UserContext)
 
     const history = useHistory();
 
@@ -28,6 +31,7 @@ const Login = () => {
         if(res.status === 400 || !data) {
             window.alert('Invalid Credentials')
         } else {
+            dispatch({ type: 'USERNAMES', payload: true })
             window.alert("Login Successfull")
             history.push('/listing');
         }

@@ -1,35 +1,36 @@
 import React from 'react';
 import './Product.css';
-import DeleteIcon from '@material-ui/icons/Delete';
 
-const Product = () => {
+const Product = ({ name, productDetails }) => {
 
-    const deleteListing = () => {
-
-    };
+    
 
     return (
-        <div className='product'>
-            <div className='product__top'>
-                <h4>
-                    Seller: Raghav
-                </h4>
+        productDetails.map( (product) => (
+            <>
+                <div className='product'>
+                    <div className='product__top'>
+                        <h4>
+                            By: {name}
+                        </h4>
+                    </div>
+                
+                    <div className='product__bottom' >
 
-                <DeleteIcon onClick={deleteListing} style={{ cursor: 'pointer' }} />
-            </div>
-            
+                        <h5> Title: {product.title} </h5>
 
-            <div className='product__bottom' > 
-                <h5> Title: product 1 </h5>
+                        <h5> Description: {product.description} </h5>
 
-                <h5> Description: This is my first product </h5>
+                        <h5> Quantity: {product.quantity} </h5>
 
-                <h5> Quantity: 11 </h5>
+                        <h5> Price: {product.price} Rs </h5>
 
-                <h5> Price: 999 Rs </h5>
-            </div>
-        </div>
+                    </div>
+                </div>
+            </>
+        ))     
     )
 }
 
-export default Product
+
+export default Product;

@@ -1,10 +1,25 @@
 import React from 'react';
-import './Home.css';
 
 const Home = () => {
+
+  const styleHomePage = {
+    display: "flex",
+    flexDirection: "column",
+    alignItems: "center",
+    marginTop: "200px"
+  }
+
     return (
-        <div>
-          Home  
+        <div className='home' style={styleHomePage} >
+          
+          <h1>
+            Welcome
+          </h1>
+          <h3>
+            Login to view products list
+          </h3>
+
+
         </div>
     )
 }

@@ -2,12 +2,14 @@ import { Button } from '@material-ui/core';
 import React, { useState } from 'react';
 import './AddProduct.css';
 
-const AddProduct = ({ closeModal, productToBeAdded }) => {
+const AddProduct = ({ closeModal }) => {
 
-    const [ productInfo, setProductInfo ] = useState({ title: '', description: '', quantity: '', price: '' })
+    const [ productInfo, setProductInfo ] = useState({ title: '', description: '', quantity: '', price: '' });
+    
 
     const addProduct = async (e) => {
         e.preventDefault();
+
 
         const { title, description, quantity, price } = productInfo;
 
@@ -32,7 +34,6 @@ const AddProduct = ({ closeModal, productToBeAdded }) => {
     };
 
     return (
-        // <div className='addProduct'>
             
             <div className='addProduct__container'>
 
@@ -67,7 +68,6 @@ const AddProduct = ({ closeModal, productToBeAdded }) => {
                 </Button>
             </div>
             
-        // </div>
     )
 }
 

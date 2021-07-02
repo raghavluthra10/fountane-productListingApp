@@ -9,7 +9,8 @@ const Listing = () => {
     const history = useHistory()
 
     const [ showProductModal, setShowProductModal ] = useState(false);
-    const [ fetchedUserData, setFetchedUserData ] = useState({})
+    const [ fetchedUserName, setFetchedUserName ] = useState({})
+    const [ userData, setUserData ] = useState([]);
 
     const getUserDetails = async () => {
         try {
@@ -23,7 +24,7 @@ const Listing = () => {
             } );
 
             const data = await res.json();
-            setFetchedUserData({...fetchedUserData, name: data.name})
+            setFetchedUserName({...fetchedUserName, name: data.name})
 
             if(!res.status === 200) {
                 const error = new Error(res.error);
@@ -41,20 +42,41 @@ const Listing = () => {
         getUserDetails();
     }, []);
 
-    // const addProduct = async (info) => {
-    //     console.log(info)
-    // };
+    
+    const getAllProducts = async () => {
+        try {
+            const res = await fetch('/getProducts', {
+                method: "GET",
+                headers: {
+                    Accept: "application/json",
+                    "Content-Type" : "application/json"
+                },
+                credentials: "include"
+            })
+
+                const data = await res.json();
+                
+                setUserData(data)
+
+        } catch (err) {
+            console.log(err);
+        }
+        
+    }
+
+    useEffect(() => {
+        getAllProducts();
+    }, [showProductModal])
 
     return (
         <div className='listing'>
 
             {showProductModal && <AddProduct 
-            // productToBeAdded={addProduct}
             closeModal={() => setShowProductModal(false)}
             /> }
 
             <div className='listing__top'>
-                <h3> {fetchedUserData.name} </h3>
+                <h3> {fetchedUserName.name} </h3>
 
                 <Button onClick={() => setShowProductModal(true)} variant='outlined' >
                     Add Product
@@ -62,10 +84,15 @@ const Listing = () => {
             </div>
 
             <div className='listing__products'>
-                <Product />
-                <Product />
-                <Product />
-                <Product />
+                {userData && userData.map((product) => {
+
+                    if(product.products.length > 0) {
+                        return<Product 
+                        name={product.name}
+                        productDetails={product.products}
+                        />
+                    }
+                })}
             </div>
             
         </div>
