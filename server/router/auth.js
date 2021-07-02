@@ -77,11 +77,13 @@ router.post('/login', async (req, res) => {
     }
 })
 
-
+// redirect to login page if user is not signed in
 router.get('/listing', authenticate, (req, res) => {
     res.send(req.rootUser);
 })
 
+
+// add new product to the list
 router.post('/addProduct', authenticate  , async (req, res) => {
     try {
         const { title, description, quantity, price } = req.body;
@@ -112,6 +114,8 @@ router.get('/logout', (req, res) => {
     res.status(200).send('loggout');
 })
 
+
+// fetch products to view on listing page
 router.get('/getProducts', async (req, res) => {
     const allUsers = await User.find({})
     res.send(allUsers)
