@@ -8,9 +8,9 @@ require('../database/connection');
 const User = require('../model/userSchema');
 
 
-router.get('/', (req, res) => {
-    res.send('hello from router backend')
-});
+// router.get('/', (req, res) => {
+//     res.send('hello from router backend')
+// });
 
 // register a new user
 router.post('/register', async (req, res) => {
